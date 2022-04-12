@@ -21,7 +21,25 @@ export const CourseScreen = () => {
             console.log(e)
         })
     }
-   
+    const addCourse=(course)=>{
+        CourseServices.createCourse(course)
+            .then(response=>{
+                const newCourse={
+                    id: course.id,
+                    name: course.name,
+                    description: course.description,
+                    level: course.level
+                }
+
+                setCourses([...courses, newCourse])
+
+                console.log(response.data)
+            })
+
+            .catch(e=>{
+                console.log(e)
+            })
+    }
 
   return (
     <div className='container'>
@@ -73,7 +91,7 @@ export const CourseScreen = () => {
             </div>
             
             <div className='col-4 mt-5'>
-            <CourseAddForm/>
+            <CourseAddForm addCourse={addCourse}/>
 
             </div>
 
