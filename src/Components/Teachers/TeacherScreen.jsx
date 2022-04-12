@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 import TeacherServices from '../../services/TeacherServices'
+import { TeacherAddForm } from './TeacherAddForm'
 
 export const TeacherScreen = () => {
 
@@ -27,48 +28,63 @@ export const TeacherScreen = () => {
 
   return (
     <div className='container'>
-        <table className='table mt-5 table-striped'>
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Documento</th>
-                    <th scope="col">Contacto</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Tipo de Sangre</th>
-                    <th scope="col">Grupo Familiar</th>
-                </tr>
-                
-
-            </thead>
-            <tbody>
-                {
-                teachers.length>0 ? 
-                (
-                    teachers.map(teachers=>(
-                        <tr key={teachers.id}>
-                            <th scope='row'>{teachers.id}</th>
-                            <th>{teachers.name}</th>
-                            <th>{teachers.numdoc}</th>
-                            <th>{teachers.phone}</th>
-                            <th>{teachers.email}</th>
-                            <th>{teachers.blood}</th>
-                            <th>{teachers.id_group_id}</th>
+        <div className='row'>
+            <div className='col-8'>
+                <table className='table mt-5 table-striped'>
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Documento</th>
+                            <th scope="col">Contacto</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Tipo de Sangre</th>
+                            <th scope="col">Grupo Familiar</th>
+                            <th scope="col">Acciones</th>
                         </tr>
                         
-                    ))
 
-                ): 
-                (
-                    <tr>
-                         <td>No hay Docentes</td>
-                       </tr>
-                )
-                
-                }
-                
-            </tbody>
-        </table>
+                    </thead>
+                    <tbody>
+                        {
+                        teachers.length>0 ? 
+                        (
+                            teachers.map(teachers=>(
+                                <tr key={teachers.id}>
+                                    <th scope='row'>{teachers.id}</th>
+                                    <td>{teachers.name}</td>
+                                    <td>{teachers.numdoc}</td>
+                                    <td>{teachers.phone}</td>
+                                    <td>{teachers.email}</td>
+                                    <td>{teachers.blood}</td>
+                                    <td>{teachers.id_group_id}</td>
+                                    <td>
+                                        <button className='btn btn-warning'>Editar</button>
+                                        <button className='btn btn-danger'>Eliminar</button>
+                                    </td>
+                                </tr>
+                                
+                            ))
+
+                        ): 
+                        (
+                            <tr>
+                                <td>No hay Docentes</td>
+                            </tr>
+                        )
+                        
+                        }
+                        
+                    </tbody>
+                </table>
+            </div>
+            <div className='col-4 mt-5'>
+                <TeacherAddForm/>
+
+            </div>
+
+        </div>
+        
 
     </div>
   )
